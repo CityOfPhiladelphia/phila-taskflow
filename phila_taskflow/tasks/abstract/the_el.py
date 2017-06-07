@@ -1,6 +1,12 @@
+import os
+
 from taskflow.tasks.bash_task import BashTask
 
 class TheEl(BashTask):
+    def __init__(self, *args, **kwargs):
+        kwargs['params']['job_definition'] = os.getenv('THE_EL_JOB_DEFINITION')
+        super(TheEl, self).__init__(*args, **kwargs)
+
     def get_command(self):
         eastern_state_cmd = 'source <(eastern_state load_environment "$EASTERN_STATE_BUCKET" "$EASTERN_STATE_NAME" "$EASTERN_STATE_ENV") &&'
 

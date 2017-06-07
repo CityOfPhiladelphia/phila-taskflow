@@ -18,8 +18,7 @@ def carto_geodb2_workflow_factory(
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
-    ## TODO: make workflow_instance and task_instance ids env vars?
-    data_file = 's3://"$S3_STAGING_BUCKET"/' + workflow_name + '/{{run_id.split(".")[0].lower()}}/' + workflow_name + '.csv'
+    data_file = 's3://"$S3_STAGING_BUCKET"/' + workflow_name + '/"$TASKFLOW_WORKFLOW"/' + workflow_name + '.csv'
 
     workflow = Workflow(
         name=workflow_name,
@@ -50,7 +49,7 @@ def carto_geodb2_workflow_factory(
         params={
             'el_command': 'create_table',
             'db_schema': 'phl',
-            'table_name': table_name + '_{{run_id.split(".")[0].lower()}}', ## TODO: make workflow_instance and task_instance ids env vars?
+            'table_name': table_name + '_"$TASKFLOW_WORKFLOW_INSTANCE_ID"',
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
             'connection_string': '"$CARTO_CONN_STRING"'
@@ -62,7 +61,7 @@ def carto_geodb2_workflow_factory(
         params={
             'el_command': 'write',
             'db_schema': 'phl',
-            'table_name': table_name + '_{{run_id.split(".")[0].lower()}}',
+            'table_name': table_name + '_"$TASKFLOW_WORKFLOW_INSTANCE_ID"',
             'skip_headers': True,
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
@@ -76,7 +75,7 @@ def carto_geodb2_workflow_factory(
         params={
             'el_command': 'swap_table',
             'db_schema': 'phl',
-            'new_table_name': table_name + '_{{run_id.split(".")[0].lower()}}',
+            'new_table_name': table_name + '_"$TASKFLOW_WORKFLOW_INSTANCE_ID"',
             'old_table_name': final_carto_table_name or table_name,
             'select_users': select_users,
             'connection_string': '"$CARTO_CONN_STRING"'

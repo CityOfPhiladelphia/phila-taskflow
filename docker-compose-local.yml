@@ -1,0 +1,29 @@
+version: '2'
+services:
+    postgres:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=taskflow
+            - POSTGRES_PASSWORD=taskflow
+            - POSTGRES_DB=taskflow
+    scheduler:
+        build: Dockerfile.scheduler
+        restart: always
+        depends_on:
+            - postgres
+        volumes:
+            - ./requirements.txt:/requirements.txt:ro
+            - ./phila_taskflow:/phila_taskflow
+        environment:
+            - EASTERN_STATE_BUCKET=eastern-state
+            - EASTERN_STATE_NAME=taskflow
+            - EASTERN_STATE_ENV=dev
+            - AWS_DEFAULT_REGION=us-east-1
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+            - S3_STAGING_BUCKET=phl-etl-staging-dev
+            - S3_SCHEMA_BUCKET=phl-schemas
+            - BEV_TAX_MSSQL_CONN_STRING=${BEV_TAX_MSSQL_CONN_STRING}
+            - CARTO_CONN_STRING=${CARTO_CONN_STRING}
+            - GEODB2_CONN_STRING=${GEODB2_CONN_STRING}
+        command: python main.py scheduler
