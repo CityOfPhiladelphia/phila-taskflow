@@ -8,7 +8,6 @@ from taskflow import cli, Taskflow
 
 from phila_taskflow.workflows import workflows
 from phila_taskflow.tasks import tasks
-from phila_taskflow.utils import get_worker_id
 
 def get_logging():
     logger = logging.getLogger()
