@@ -1,5 +1,5 @@
-from .etl.geodb2_carto import carto_geodb2_assessments
+from .etl.geodb2_carto import etl_carto_geodb2_assessments
 
 workflows = [
-    carto_geodb2_assessments
+    etl_carto_geodb2_assessments
 ]

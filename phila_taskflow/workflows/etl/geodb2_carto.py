@@ -34,7 +34,7 @@ def carto_geodb2_workflow_factory(
             'table_name': geodb2_table_name or table_name,
             'geometry_support':  geometry_support,
             'connection_string': geodb2_connection_string,
-            'output_file': data_file,
+            'el_output_file': data_file,
             'to_srid': to_srid,
             'from_srid': from_srid
         })
@@ -66,7 +66,7 @@ def carto_geodb2_workflow_factory(
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
             'connection_string': '"$CARTO_CONN_STRING"',
-            'input_file': data_file
+            'el_input_file': data_file
         })
 
     swap_carto_tables = TheEl(
@@ -87,7 +87,7 @@ def carto_geodb2_workflow_factory(
 
     return workflow
 
-carto_geodb2_assessments = carto_geodb2_workflow_factory(
+etl_carto_geodb2_assessments = carto_geodb2_workflow_factory(
        'GIS_OPA',
        'assessments',
        's3://"$S3_SCHEMA_BUCKET"/opa_assessments.json',

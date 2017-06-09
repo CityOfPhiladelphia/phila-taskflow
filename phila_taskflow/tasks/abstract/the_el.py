@@ -23,13 +23,13 @@ class TheEl(BashTask):
         if self.params['el_command'] == 'swap_table':
             bash_command += ' ' + self.params['old_table_name']
 
-        if connection_string in self.params and self.params['connection_string'] != None:
+        if 'connection_string' in self.params and self.params['connection_string'] != None:
             bash_command += ' --connection-string {}'.format(self.params['connection_string'])
 
-        if db_schema in self.params and self.params['db_schema']:
+        if 'db_schema' in self.params and self.params['db_schema']:
             bash_command += ' --db-schema {}'.format(self.params['db_schema'])
 
-        if geometry_support in self.params and self.params['geometry_support'] != None:
+        if 'geometry_support' in self.params and self.params['geometry_support'] != None:
             bash_command += ' --geometry-support {}'.format(self.params['geometry_support'])
 
         if 'indexes_fields' in self.params and self.params['indexes_fields'] != None:
@@ -40,11 +40,11 @@ class TheEl(BashTask):
 
             bash_command += ' --indexes-fields {}'.format(_indexes_fields)
 
-        if 'input_file' in self.params and self.params['input_file'] != None:
-            bash_command += ' --input-file {}'.format(self.params['input_file'])
+        if 'el_input_file' in self.params and self.params['el_input_file'] != None:
+            bash_command += ' --input-file {}'.format(self.params['el_input_file'])
 
-        if 'output_file' in self.params and self.params['output_file'] != None:
-            bash_command += ' --output-file {}'.format(self.params['output_file'])
+        if 'el_output_file' in self.params and self.params['el_output_file'] != None:
+            bash_command += ' --output-file {}'.format(self.params['el_output_file'])
 
         if 'skip_headers' in self.params and self.params['skip_headers'] != None:
             bash_command += ' --skip-headers'
