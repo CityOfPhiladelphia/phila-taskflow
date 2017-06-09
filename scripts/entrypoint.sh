@@ -8,6 +8,8 @@ if [ -e "/requirements.txt" ]; then
     $(which pip) install --user -r /requirements.txt
 fi
 
+pip install --user .
+
 if [ -z ${EASTERN_STATE_BUCKET+x} ]; then
   echo "$(date) - Not using eastern_state"
 else
