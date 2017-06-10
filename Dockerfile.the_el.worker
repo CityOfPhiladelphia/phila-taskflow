@@ -83,7 +83,12 @@ RUN set -ex \
     && pip3 install git+https://github.com/awm33/taskflow.git#egg=taskflow \
     && pip3 install git+https://github.com/CityOfPhiladelphia/eastern-state.git \
     && pip3 install git+https://github.com/CityOfPhiladelphia/jsontableschema-sql-py.git#egg=jsontableschema_sql \
-    && pip3 install git+https://github.com/CityOfPhiladelphia/the-el.git#egg=the_el
+    && pip3 install git+https://github.com/CityOfPhiladelphia/the-el.git#egg=the_el \
+    && pip3 install cx_Oracle==5.2.1 \
+    && pip3 install geomet \
+    && pip3 install geoalchemy2 \
+    && pip3 install pymssql \
+    && pip3 install psycopg2>=2.6
 
 ENV AIRFLOW_HOME /usr/local/airflow
 
