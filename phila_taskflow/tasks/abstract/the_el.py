@@ -4,6 +4,7 @@ from taskflow.tasks.bash_task import BashTask
 
 class TheEl(BashTask):
     def __init__(self, *args, **kwargs):
+        kwargs['push_destination'] = 'aws_batch'
         kwargs['params']['job_definition'] = os.getenv('THE_EL_JOB_DEFINITION')
         super(TheEl, self).__init__(*args, **kwargs)
 

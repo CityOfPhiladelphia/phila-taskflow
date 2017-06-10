@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 
 from taskflow import cli, Taskflow
+from taskflow.push_workers.aws_batch import AWSBatchPushWorker
 
 from phila_taskflow.workflows import workflows
 from phila_taskflow.tasks import tasks
@@ -22,6 +23,8 @@ def get_taskflow():
 
     taskflow.add_workflows(workflows)
     taskflow.add_tasks(tasks)
+    job_queue = os.getenv('TASKFLOW_JOB_QUEUE')
+    taskflow.add_push_worker(AWSBatchPushWorker(taskflow, default_job_queue=job_queue))
 
     return taskflow
 
