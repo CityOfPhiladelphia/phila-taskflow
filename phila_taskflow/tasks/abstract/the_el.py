@@ -11,9 +11,15 @@ class TheEl(BashTask):
     def get_command(self):
         eastern_state_cmd = 'source <(eastern_state load_environment "$EASTERN_STATE_BUCKET" "$EASTERN_STATE_NAME" "$EASTERN_STATE_ENV") &&'
 
+        if 'table_name' in self.params and self.params['table_name'] != None:
+            table_name = self.params['table_name']
+        elif 'new_table_name' in self.params and self.params['new_table_name'] != None:
+            table_name = self.params['new_table_name']
+
         bash_command = '{} the_el {} {}'.format(
-            eastern_state_cmd, self.params['el_command'],
-            self.params['table_name'] or self.params['new_table_name'])
+            eastern_state_cmd,
+            self.params['el_command'],
+            table_name)
 
         if 'table_schema_path' in self.params and self.params['table_schema_path'] != None:
             if self.params['el_command'] == 'create_table':
