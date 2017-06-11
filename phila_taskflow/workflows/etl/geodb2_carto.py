@@ -28,6 +28,7 @@ def carto_geodb2_workflow_factory(
     extract_from_geodb2 = TheEl(
         workflow=workflow,
         name=workflow_name + '_extract_from_geodb2',
+        timeout=3600,
         params={
             'el_command': 'read',
             'db_schema': geodb2_schema,
@@ -46,6 +47,7 @@ def carto_geodb2_workflow_factory(
     create_temp_carto_table = TheEl(
         workflow=workflow,
         name=workflow_name + '_create_temp_carto_table',
+        timeout=600,
         params={
             'el_command': 'create_table',
             'db_schema': 'phl',
@@ -58,6 +60,7 @@ def carto_geodb2_workflow_factory(
     load_to_temp_carto_table = TheEl(
         workflow=workflow,
         name=workflow_name + '_load_to_temp_carto_table',
+        timeout=3600,
         params={
             'el_command': 'write',
             'db_schema': 'phl',
@@ -72,6 +75,7 @@ def carto_geodb2_workflow_factory(
     swap_carto_tables = TheEl(
         workflow=workflow,
         name=workflow_name + '_swap_carto_tables',
+        timeout=600,
         params={
             'el_command': 'swap_table',
             'db_schema': 'phl',
