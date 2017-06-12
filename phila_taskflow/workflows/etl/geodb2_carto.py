@@ -102,6 +102,7 @@ etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
        'GIS_311',
        'public_cases_fc',
        's3://"$S3_SCHEMA_BUCKET"/public_cases_fc.json',
+       geometry_support='sde-char',
        schedule='0 6 * * *',
        final_carto_table_name='taskflow_public_cases_fc')
 
@@ -109,7 +110,9 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
        'GIS_311',
        'salesforce_cases',
        's3://"$S3_SCHEMA_BUCKET"/salesforce_cases.json',
+       geometry_support='sde-char',
        schedule='0 6 * * *',
+       select_users='tileuser',
        final_carto_table_name='taskflow_salesforce_cases')
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
@@ -123,5 +126,14 @@ etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
        'GIS_STREETS',
        'wastebaskets_big_belly',
        's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
+       geometry_support='sde-char',
        schedule='0 6 * * *',
        final_carto_table_name='taskflow_wastebaskets_big_belly')
+
+etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
+       'GIS_POLICE',
+       'incidents_part1_part2',
+       's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
+       geometry_support='sde-char',
+       schedule='0 6 * * *',
+       final_carto_table_name='taskflow_incidents_part1_part2')
