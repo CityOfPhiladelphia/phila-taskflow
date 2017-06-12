@@ -18,7 +18,7 @@ def carto_geodb2_workflow_factory(
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
-    data_file = 's3://"$S3_STAGING_BUCKET"/' + workflow_name + '/"$TASKFLOW_WORKFLOW"/' + workflow_name + '.csv'
+    data_file = 's3://"$S3_STAGING_BUCKET"/' + workflow_name + '/"$TASKFLOW_WORKFLOW_INSTANCE_ID"/' + workflow_name + '.csv'
 
     workflow = Workflow(
         name=workflow_name,
@@ -29,6 +29,7 @@ def carto_geodb2_workflow_factory(
         workflow=workflow,
         name=workflow_name + '_extract_from_geodb2',
         timeout=3600,
+        retries=2,
         params={
             'el_command': 'read',
             'db_schema': geodb2_schema,
@@ -48,6 +49,7 @@ def carto_geodb2_workflow_factory(
         workflow=workflow,
         name=workflow_name + '_create_temp_carto_table',
         timeout=600,
+        retries=2,
         params={
             'el_command': 'create_table',
             'db_schema': 'phl',
@@ -61,6 +63,7 @@ def carto_geodb2_workflow_factory(
         workflow=workflow,
         name=workflow_name + '_load_to_temp_carto_table',
         timeout=3600,
+        retries=2,
         params={
             'el_command': 'write',
             'db_schema': 'phl',
@@ -76,6 +79,7 @@ def carto_geodb2_workflow_factory(
         workflow=workflow,
         name=workflow_name + '_swap_carto_tables',
         timeout=600,
+        retries=2,
         params={
             'el_command': 'swap_table',
             'db_schema': 'phl',
@@ -113,7 +117,7 @@ etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
        'public_cases_fc',
        's3://"$S3_SCHEMA_BUCKET"/public_cases_fc.json',
        geometry_support='sde-char',
-       schedule='0 6 * * *',
+       schedule='15 6 * * *',
        final_carto_table_name='taskflow_public_cases_fc')
 
 etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
@@ -121,7 +125,7 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
        'salesforce_cases',
        's3://"$S3_SCHEMA_BUCKET"/salesforce_cases.json',
        geometry_support='sde-char',
-       schedule='0 6 * * *',
+       schedule='15 6 * * *',
        select_users='tileuser',
        geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
        final_carto_table_name='taskflow_salesforce_cases')
@@ -130,7 +134,7 @@ etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
        'GIS_ODDT',
        'employee_salaries',
        's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
-       schedule='0 6 * * *',
+       schedule='30 6 * * *',
        final_carto_table_name='taskflow_employee_salaries')
 
 etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
@@ -138,7 +142,7 @@ etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
        'wastebaskets_big_belly',
        's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
        geometry_support='sde-char',
-       schedule='0 6 * * *',
+       schedule='30 6 * * *',
        final_carto_table_name='taskflow_wastebaskets_big_belly')
 
 etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
@@ -146,5 +150,5 @@ etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
        'incidents_part1_part2',
        's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
        geometry_support='sde-char',
-       schedule='0 6 * * *',
+       schedule='0 7 * * *',
        final_carto_table_name='taskflow_incidents_part1_part2')
