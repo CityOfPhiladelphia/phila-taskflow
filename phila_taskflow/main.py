@@ -10,13 +10,21 @@ from taskflow.push_workers.aws_batch import AWSBatchPushWorker
 from phila_taskflow.workflows import workflows
 from phila_taskflow.tasks import tasks
 
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 def get_logging():
     logger = logging.getLogger()
     handler = logging.StreamHandler()
     formatter = logging.Formatter('[%(asctime)s] %(name)s %(levelname)s %(message)s')
     handler.setFormatter(formatter)
     logger.addHandler(handler)
-    logger.setLevel(logging.DEBUG)
+
+    if DEBUG:
+        level = logging.DEBUG
+    else:
+        level = logging.INFO
+
+    logger.setLevel(level)
 
 def get_taskflow():
     taskflow = Taskflow()
