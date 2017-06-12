@@ -130,7 +130,7 @@ etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
        schedule='0 6 * * *',
        final_carto_table_name='taskflow_wastebaskets_big_belly')
 
-etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
+etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
        'GIS_POLICE',
        'incidents_part1_part2',
        's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
