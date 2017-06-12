@@ -98,6 +98,16 @@ etl_carto_geodb2_assessments = carto_geodb2_workflow_factory(
        schedule='0 6 * * *',
        final_carto_table_name='taskflow_assessments')
 
+etl_carto_geodb2_opa_properties_public = carto_geodb2_workflow_factory(
+       'GIS_ODDT',
+       'opa_properties_public',
+       's3://"$S3_SCHEMA_BUCKET"/opa_properties_public.json',
+       geometry_support='sde-char',
+       schedule='0 6 * * *',
+       final_carto_table_name='taskflow_opa_properties_public',
+       from_srid=2272,
+       to_srid=4326)
+
 etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
        'GIS_311',
        'public_cases_fc',
