@@ -113,6 +113,7 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
        geometry_support='sde-char',
        schedule='0 6 * * *',
        select_users='tileuser',
+       geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
        final_carto_table_name='taskflow_salesforce_cases')
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
