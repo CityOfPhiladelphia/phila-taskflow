@@ -99,8 +99,7 @@ etl_carto_geodb2_assessments = carto_geodb2_workflow_factory(
        'GIS_OPA',
        'assessments',
        's3://"$S3_SCHEMA_BUCKET"/opa_assessments.json',
-       schedule='0 6 * * *',
-       final_carto_table_name='taskflow_assessments')
+       schedule='0 6 * * *')
 
 etl_carto_geodb2_opa_properties_public = carto_geodb2_workflow_factory(
        'GIS_ODDT',
@@ -117,8 +116,7 @@ etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
        'public_cases_fc',
        's3://"$S3_SCHEMA_BUCKET"/public_cases_fc.json',
        geometry_support='sde-char',
-       schedule='15 6 * * *',
-       final_carto_table_name='taskflow_public_cases_fc')
+       schedule='15 6 * * *')
 
 etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
        'GIS_311',
@@ -127,28 +125,24 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
        geometry_support='sde-char',
        schedule='15 6 * * *',
        select_users='tileuser',
-       geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
-       final_carto_table_name='taskflow_salesforce_cases')
+       geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
        'GIS_ODDT',
        'employee_salaries',
        's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
-       schedule='30 6 * * *',
-       final_carto_table_name='taskflow_employee_salaries')
+       schedule='30 6 * * *')
 
 etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
        'GIS_STREETS',
        'wastebaskets_big_belly',
        's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
        geometry_support='sde-char',
-       schedule='30 6 * * *',
-       final_carto_table_name='taskflow_wastebaskets_big_belly')
+       schedule='30 6 * * *')
 
 etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
        'GIS_POLICE',
        'incidents_part1_part2',
        's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
        geometry_support='sde-char',
-       schedule='0 7 * * *',
-       final_carto_table_name='taskflow_incidents_part1_part2')
+       schedule='0 7 * * *')
