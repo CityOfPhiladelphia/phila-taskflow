@@ -153,3 +153,28 @@ etl_carto_geodb2_ais_vw_zoning_documents = carto_geodb2_workflow_factory(
        's3://"$S3_SCHEMA_BUCKET"/gis_ais_sources_vw_zoning_documents.json',
        schedule='0 8 * * *',
        final_carto_table_name='ais_zoning_documents')
+
+etl_carto_geodb2_li_appeals = carto_geodb2_workflow_factory(
+       'GIS_LNI',
+       'li_appeals',
+       's3://"$S3_SCHEMA_BUCKET"/li_appeals.json',
+       geometry_support='sde-char',
+       schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_appeals_type = carto_geodb2_workflow_factory(
+       'GIS_LNI',
+       'li_appeals_type',
+       's3://"$S3_SCHEMA_BUCKET"/li_appeals_type.json',
+       schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_board_decisions = carto_geodb2_workflow_factory(
+       'GIS_LNI',
+       'li_board_decisions',
+       's3://"$S3_SCHEMA_BUCKET"/li_board_decisions.json',
+       schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
+       'GIS_LNI',
+       'li_court_appeals',
+       's3://"$S3_SCHEMA_BUCKET"/li_court_appeals.json',
+       schedule='0 8 * * 2-6')

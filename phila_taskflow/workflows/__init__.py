@@ -9,7 +9,11 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_wastebaskets_big_belly,
     etl_carto_geodb2_incidents_part1_part2,
     etl_carto_geodb2_opa_properties_public,
-    etl_carto_geodb2_ais_vw_zoning_documents
+    etl_carto_geodb2_ais_vw_zoning_documents,
+    etl_carto_geodb2_li_appeals,
+    etl_carto_geodb2_li_appeals_type,
+    etl_carto_geodb2_li_board_decisions,
+    etl_carto_geodb2_li_court_appeals
 )
 
 workflows = [
@@ -20,5 +24,9 @@ workflows = [
     etl_carto_geodb2_wastebaskets_big_belly,
     etl_carto_geodb2_incidents_part1_part2,
     etl_carto_geodb2_opa_properties_public,
-    etl_carto_geodb2_ais_vw_zoning_documents
+    etl_carto_geodb2_ais_vw_zoning_documents,
+    etl_carto_geodb2_li_appeals,
+    etl_carto_geodb2_li_appeals_type,
+    etl_carto_geodb2_li_board_decisions,
+    etl_carto_geodb2_li_court_appeals
 ]
