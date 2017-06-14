@@ -152,4 +152,4 @@ etl_carto_geodb2_ais_vw_zoning_documents = carto_geodb2_workflow_factory(
        'vw_zoning_documents',
        's3://"$S3_SCHEMA_BUCKET"/gis_ais_sources_vw_zoning_documents.json',
        schedule='0 8 * * *',
-       final_carto_table_name='ais_zoning_document')
+       final_carto_table_name='ais_zoning_documents')
