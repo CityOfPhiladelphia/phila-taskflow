@@ -13,7 +13,9 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_li_appeals,
     etl_carto_geodb2_li_appeals_type,
     etl_carto_geodb2_li_board_decisions,
-    etl_carto_geodb2_li_court_appeals
+    etl_carto_geodb2_li_court_appeals,
+    etl_carto_geodb2_li_imm_dang,
+    etl_carto_geodb2_li_trade_licenses
 )
 
 workflows = [
@@ -28,5 +30,7 @@ workflows = [
     etl_carto_geodb2_li_appeals,
     etl_carto_geodb2_li_appeals_type,
     etl_carto_geodb2_li_board_decisions,
-    etl_carto_geodb2_li_court_appeals
+    etl_carto_geodb2_li_court_appeals,
+    etl_carto_geodb2_li_imm_dang,
+    etl_carto_geodb2_li_trade_licenses
 ]

@@ -96,85 +96,108 @@ def carto_geodb2_workflow_factory(
     return workflow
 
 etl_carto_geodb2_assessments = carto_geodb2_workflow_factory(
-       'GIS_OPA',
-       'assessments',
-       's3://"$S3_SCHEMA_BUCKET"/opa_assessments.json',
-       schedule='0 6 * * *')
+        'GIS_OPA',
+        'assessments',
+        's3://"$S3_SCHEMA_BUCKET"/opa_assessments.json',
+        schedule='0 6 * * *')
 
 etl_carto_geodb2_opa_properties_public = carto_geodb2_workflow_factory(
-       'GIS_ODDT',
-       'opa_properties_public',
-       's3://"$S3_SCHEMA_BUCKET"/opa_properties_public.json',
-       geometry_support='sde-char',
-       schedule='0 6 * * *',
-       final_carto_table_name='taskflow_opa_properties_public',
-       from_srid=2272,
-       to_srid=4326)
+        'GIS_ODDT',
+        'opa_properties_public',
+        's3://"$S3_SCHEMA_BUCKET"/opa_properties_public.json',
+        geometry_support='sde-char',
+        schedule='0 6 * * *',
+        from_srid=2272,
+        to_srid=4326)
 
 etl_carto_geodb2_public_cases_fc = carto_geodb2_workflow_factory(
-       'GIS_311',
-       'public_cases_fc',
-       's3://"$S3_SCHEMA_BUCKET"/public_cases_fc.json',
-       geometry_support='sde-char',
-       schedule='15 6 * * *')
+        'GIS_311',
+        'public_cases_fc',
+        's3://"$S3_SCHEMA_BUCKET"/public_cases_fc.json',
+        geometry_support='sde-char',
+        schedule='15 6 * * *')
 
 etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
-       'GIS_311',
-       'salesforce_cases',
-       's3://"$S3_SCHEMA_BUCKET"/salesforce_cases.json',
-       geometry_support='sde-char',
-       schedule='15 6 * * *',
-       select_users='tileuser',
-       geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
+        'GIS_311',
+        'salesforce_cases',
+        's3://"$S3_SCHEMA_BUCKET"/salesforce_cases.json',
+        geometry_support='sde-char',
+        schedule='15 6 * * *',
+        select_users='tileuser',
+        geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
-       'GIS_ODDT',
-       'employee_salaries',
-       's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
-       schedule='30 6 * * *')
+        'GIS_ODDT',
+        'employee_salaries',
+        's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
+        schedule='30 6 * * *')
 
 etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
-       'GIS_STREETS',
-       'wastebaskets_big_belly',
-       's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
-       geometry_support='sde-char',
-       schedule='30 6 * * *')
+        'GIS_STREETS',
+        'wastebaskets_big_belly',
+        's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
+        geometry_support='sde-char',
+        schedule='30 6 * * *')
 
 etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
-       'GIS_POLICE',
-       'incidents_part1_part2',
-       's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
-       geometry_support='sde-char',
-       schedule='0 7 * * *')
+        'GIS_POLICE',
+        'incidents_part1_part2',
+        's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
+        geometry_support='sde-char',
+        schedule='0 7 * * *')
 
 etl_carto_geodb2_ais_vw_zoning_documents = carto_geodb2_workflow_factory(
-       'GIS_AIS_SOURCES',
-       'vw_zoning_documents',
-       's3://"$S3_SCHEMA_BUCKET"/gis_ais_sources_vw_zoning_documents.json',
-       schedule='0 8 * * *',
-       final_carto_table_name='ais_zoning_documents')
+        'GIS_AIS_SOURCES',
+        'vw_zoning_documents',
+        's3://"$S3_SCHEMA_BUCKET"/gis_ais_sources_vw_zoning_documents.json',
+        schedule='0 8 * * *',
+        final_carto_table_name='ais_zoning_documents')
 
 etl_carto_geodb2_li_appeals = carto_geodb2_workflow_factory(
-       'GIS_LNI',
-       'li_appeals',
-       's3://"$S3_SCHEMA_BUCKET"/li_appeals.json',
-       geometry_support='sde-char',
-       schedule='0 8 * * 2-6')
+        'GIS_LNI',
+        'li_appeals',
+        's3://"$S3_SCHEMA_BUCKET"/li_appeals.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6')
 
 etl_carto_geodb2_li_appeals_type = carto_geodb2_workflow_factory(
-       'GIS_LNI',
-       'li_appeals_type',
-       's3://"$S3_SCHEMA_BUCKET"/li_appeals_type.json',
-       schedule='0 8 * * 2-6')
+        'GIS_LNI',
+        'li_appeals_type',
+        's3://"$S3_SCHEMA_BUCKET"/li_appeals_type.json',
+        schedule='0 8 * * 2-6')
 
 etl_carto_geodb2_li_board_decisions = carto_geodb2_workflow_factory(
-       'GIS_LNI',
-       'li_board_decisions',
-       's3://"$S3_SCHEMA_BUCKET"/li_board_decisions.json',
-       schedule='0 8 * * 2-6')
+        'GIS_LNI',
+        'li_board_decisions',
+        's3://"$S3_SCHEMA_BUCKET"/li_board_decisions.json',
+        schedule='0 8 * * 2-6')
+
+# etl_carto_geodb2_li_business_licenses = carto_geodb2_workflow_factory(
+#         'GIS_LNI',
+#         'li_business_licenses',
+#         's3://"$S3_SCHEMA_BUCKET"/li_business_licenses.json',
+#         geometry_support='sde-char',
+#         schedule='0 8 * * 2-6')
 
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
-       'GIS_LNI',
-       'li_court_appeals',
-       's3://"$S3_SCHEMA_BUCKET"/li_court_appeals.json',
-       schedule='0 8 * * 2-6')
+        'GIS_LNI',
+        'li_court_appeals',
+        's3://"$S3_SCHEMA_BUCKET"/li_court_appeals.json',
+        schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_imm_dang = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_imm_dang',
+        's3://"$S3_SCHEMA_BUCKET"/li_imm_dang.json',
+        geometry_support='sde-char',
+        schedule='0 7 * * *',
+        final_carto_table_name='awm_li_imm_dang',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_li_trade_licenses = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_trade_licenses',
+        's3://"$S3_SCHEMA_BUCKET"/li_trade_licenses.json',
+        schedule='0 7 * * *',
+        final_carto_table_name='awm_li_trade_licenses')
