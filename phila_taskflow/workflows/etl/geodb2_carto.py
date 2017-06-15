@@ -172,12 +172,12 @@ etl_carto_geodb2_li_board_decisions = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/li_board_decisions.json',
         schedule='0 8 * * 2-6')
 
-# etl_carto_geodb2_li_business_licenses = carto_geodb2_workflow_factory(
-#         'GIS_LNI',
-#         'li_business_licenses',
-#         's3://"$S3_SCHEMA_BUCKET"/li_business_licenses.json',
-#         geometry_support='sde-char',
-#         schedule='0 8 * * 2-6')
+etl_carto_geodb2_li_business_licenses = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_business_licenses',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_business_licenses.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6')
 
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
         'GIS_LNI',
@@ -191,7 +191,6 @@ etl_carto_geodb2_li_imm_dang = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/li_imm_dang.json',
         geometry_support='sde-char',
         schedule='0 7 * * *',
-        final_carto_table_name='awm_li_imm_dang',
         from_srid=2272,
         to_srid=4326)
 
@@ -199,5 +198,4 @@ etl_carto_geodb2_li_trade_licenses = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_trade_licenses',
         's3://"$S3_SCHEMA_BUCKET"/li_trade_licenses.json',
-        schedule='0 7 * * *',
-        final_carto_table_name='awm_li_trade_licenses')
+        schedule='0 7 * * *')
