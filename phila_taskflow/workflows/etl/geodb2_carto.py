@@ -179,6 +179,15 @@ etl_carto_geodb2_li_business_licenses = carto_geodb2_workflow_factory(
         geometry_support='sde-char',
         schedule='0 8 * * 2-6')
 
+etl_carto_geodb2_li_case_inspections = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_case_inspections',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_case_inspections.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
+
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_court_appeals',
@@ -190,7 +199,25 @@ etl_carto_geodb2_li_imm_dang = carto_geodb2_workflow_factory(
         'li_imm_dang',
         's3://"$S3_SCHEMA_BUCKET"/li_imm_dang.json',
         geometry_support='sde-char',
-        schedule='0 7 * * *',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_li_permits = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_permits',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_permits.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_li_serv_req = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_serv_req',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_serv_req.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
         from_srid=2272,
         to_srid=4326)
 
@@ -198,4 +225,22 @@ etl_carto_geodb2_li_trade_licenses = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_trade_licenses',
         's3://"$S3_SCHEMA_BUCKET"/li_trade_licenses.json',
-        schedule='0 7 * * *')
+        schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_unsafe = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_unsafe',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_unsafe.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_li_violations = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_violations',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_violations.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
