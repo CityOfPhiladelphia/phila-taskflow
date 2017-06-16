@@ -290,7 +290,7 @@ etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
         'land_use',
         's3://"$S3_SCHEMA_BUCKET"/gis_planning_land_use.json',
         geometry_support='sde',
-        schedule='0 7 * * *',
-        from_srid=300047,
+        schedule='0 7 1 * *',
+        from_srid=2272,
         to_srid=4326,
         final_carto_table_name='taskflow_land_use')
