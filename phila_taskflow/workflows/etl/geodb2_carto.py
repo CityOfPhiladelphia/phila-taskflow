@@ -213,6 +213,12 @@ etl_carto_geodb2_li_case_inspections = carto_geodb2_workflow_factory(
         from_srid=2272,
         to_srid=4326)
 
+etl_carto_geodb2_li_com_act_licenses = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_com_act_licenses',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_com_act_licenses.json',
+        schedule='0 8 * * 2-6')
+
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_court_appeals',
@@ -275,7 +281,7 @@ etl_carto_geodb2_stormwater_grants = carto_geodb2_workflow_factory(
         'stormwater_grants',
         's3://"$S3_SCHEMA_BUCKET"/gis_watersheds_stormwater_grants.json',
         geometry_support='sde-char',
-        schedule='0 8 * * 2-6',
+        schedule='0 7 * * *',
         from_srid=2272,
         to_srid=4326)
 
@@ -284,7 +290,7 @@ etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
         'land_use',
         's3://"$S3_SCHEMA_BUCKET"/gis_planning_land_use.json',
         geometry_support='sde',
-        schedule='0 8 * * 2-6',
+        schedule='0 7 * * *',
         from_srid=300047,
         to_srid=4326,
         final_carto_table_name='taskflow_land_use')
