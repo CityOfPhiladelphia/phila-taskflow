@@ -132,17 +132,42 @@ etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
         schedule='30 6 * * *')
 
+etl_carto_geodb2_streets_code_violation_notices = carto_geodb2_workflow_factory(
+        'GIS_STREETS',
+        'streets_code_violation_notices',
+        's3://"$S3_SCHEMA_BUCKET"/gis_streets_streets_code_violation_notices.json',
+        geometry_support='sde-char',
+        schedule='30 6 * * *',
+        from_srid=2272,
+        to_srid=4326)
+
 etl_carto_geodb2_wastebaskets_big_belly = carto_geodb2_workflow_factory(
         'GIS_STREETS',
         'wastebaskets_big_belly',
         's3://"$S3_SCHEMA_BUCKET"/wastebaskets_big_belly.json',
         geometry_support='sde-char',
-        schedule='30 6 * * *')
+        schedule='30 6 * * *',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_car_ped_stops = carto_geodb2_workflow_factory(
+        'GIS_POLICE',
+        'car_ped_stops',
+        's3://"$S3_SCHEMA_BUCKET"/gis_police_car_ped_stops.json',
+        geometry_support='sde-char',
+        schedule='0 7 * * *')
 
 etl_carto_geodb2_incidents_part1_part2 = carto_geodb2_workflow_factory(
         'GIS_POLICE',
         'incidents_part1_part2',
         's3://"$S3_SCHEMA_BUCKET"/incidents_part1_part2.json',
+        geometry_support='sde-char',
+        schedule='0 7 * * *')
+
+etl_carto_geodb2_shootings = carto_geodb2_workflow_factory(
+        'GIS_POLICE',
+        'shootings',
+        's3://"$S3_SCHEMA_BUCKET"/gis_police_shootings.json',
         geometry_support='sde-char',
         schedule='0 7 * * *')
 
@@ -244,3 +269,22 @@ etl_carto_geodb2_li_violations = carto_geodb2_workflow_factory(
         schedule='0 8 * * 2-6',
         from_srid=2272,
         to_srid=4326)
+
+etl_carto_geodb2_stormwater_grants = carto_geodb2_workflow_factory(
+        'GIS_WATERSHEDS',
+        'stormwater_grants',
+        's3://"$S3_SCHEMA_BUCKET"/gis_watersheds_stormwater_grants.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
+        'GIS_PLANNING',
+        'land_use',
+        's3://"$S3_SCHEMA_BUCKET"/gis_planning_land_use.json',
+        geometry_support='sde',
+        schedule='0 8 * * 2-6',
+        from_srid=300047,
+        to_srid=4326,
+        final_carto_table_name='taskflow_land_use')

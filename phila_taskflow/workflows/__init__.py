@@ -6,8 +6,11 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_public_cases_fc,
     etl_carto_geodb2_salesforce_cases,
     etl_carto_geodb2_employee_salaries,
+    etl_carto_geodb2_streets_code_violation_notices,
     etl_carto_geodb2_wastebaskets_big_belly,
+    etl_carto_geodb2_car_ped_stops,
     etl_carto_geodb2_incidents_part1_part2,
+    etl_carto_geodb2_shootings,
     etl_carto_geodb2_opa_properties_public,
     etl_carto_geodb2_ais_vw_zoning_documents,
     etl_carto_geodb2_li_appeals,
@@ -21,7 +24,9 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_li_serv_req,
     etl_carto_geodb2_li_trade_licenses,
     etl_carto_geodb2_li_unsafe,
-    etl_carto_geodb2_li_violations
+    etl_carto_geodb2_li_violations,
+    etl_carto_geodb2_stormwater_grants,
+    etl_carto_geodb2_land_use
 )
 
 workflows = [
@@ -29,8 +34,11 @@ workflows = [
     etl_carto_geodb2_public_cases_fc,
     etl_carto_geodb2_salesforce_cases,
     etl_carto_geodb2_employee_salaries,
+    etl_carto_geodb2_streets_code_violation_notices,
     etl_carto_geodb2_wastebaskets_big_belly,
+    etl_carto_geodb2_car_ped_stops,
     etl_carto_geodb2_incidents_part1_part2,
+    etl_carto_geodb2_shootings,
     etl_carto_geodb2_opa_properties_public,
     etl_carto_geodb2_ais_vw_zoning_documents,
     etl_carto_geodb2_li_appeals,
@@ -44,5 +52,7 @@ workflows = [
     etl_carto_geodb2_li_serv_req,
     etl_carto_geodb2_li_trade_licenses,
     etl_carto_geodb2_li_unsafe,
-    etl_carto_geodb2_li_violations
+    etl_carto_geodb2_li_violations,
+    etl_carto_geodb2_stormwater_grants,
+    etl_carto_geodb2_land_use
 ]
