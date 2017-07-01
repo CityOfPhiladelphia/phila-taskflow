@@ -7,7 +7,9 @@ services:
             - POSTGRES_PASSWORD=taskflow
             - POSTGRES_DB=taskflow
     scheduler:
-        build: Dockerfile.scheduler
+        build:
+          context: ./
+          dockerfile: Dockerfile.scheduler
         restart: always
         depends_on:
             - postgres
