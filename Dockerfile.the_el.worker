@@ -71,7 +71,7 @@ RUN set -ex \
     && rm oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
 
 RUN set -ex \
-    && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git@monitoring#egg=taskflow \
+    && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git#egg=taskflow \
     && pip3 install git+https://github.com/CityOfPhiladelphia/eastern-state.git \
     && pip3 install git+https://github.com/CityOfPhiladelphia/jsontableschema-sql-py.git#egg=jsontableschema_sql \
     && pip3 install git+https://github.com/CityOfPhiladelphia/the-el.git#egg=the_el[oracle,postgres,mssql,postgis,oracle_sde]
