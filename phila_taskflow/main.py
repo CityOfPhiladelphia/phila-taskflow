@@ -6,6 +6,7 @@ import json
 
 from taskflow import cli, Taskflow
 from taskflow.push_workers.aws_batch import AWSBatchPushWorker
+from taskflow.monitoring.aws import AWSMonitor
 
 from phila_taskflow.workflows import workflows
 from phila_taskflow.tasks import tasks
@@ -27,7 +28,9 @@ def get_logging():
     logger.setLevel(level)
 
 def get_taskflow():
-    taskflow = Taskflow()
+    monitor = AWSMonitor(metric_namespace='taskflow_dev')
+
+    taskflow = Taskflow(monitoring=monitor)
 
     taskflow.add_workflows(workflows)
     taskflow.add_tasks(tasks)
