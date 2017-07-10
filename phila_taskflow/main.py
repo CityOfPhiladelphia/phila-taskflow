@@ -28,7 +28,7 @@ def get_logging():
     logger.setLevel(level)
 
 def get_taskflow():
-    monitor = AWSMonitor(metric_namespace='taskflow_dev')
+    monitor = AWSMonitor(metric_namespace='taskflow')
 
     taskflow = Taskflow(monitoring=monitor)
 
