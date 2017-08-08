@@ -12,6 +12,7 @@ s3_sftp_sync = S3SFTPSync(
     schedule='0 * * * *',
     push_destination='aws_batch',
     timeout=7200,
+    retries=1,
     params={
         'job_definition': os.getenv('S3_SFTP_SYNC_JOB_DEFINITION')
     })
