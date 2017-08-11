@@ -123,7 +123,7 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/salesforce_cases.json',
         geometry_support='sde-char',
         schedule='15 6 * * *',
-        select_users='tileuser',
+        select_users='tileuser,phl-gsg',
         geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
