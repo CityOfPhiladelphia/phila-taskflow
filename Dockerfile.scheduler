@@ -49,7 +49,7 @@ RUN set -ex \
     && pip3 install pyasn1
 
 RUN set -ex \
-    && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git@0.2.2#egg=taskflow \
+    && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git@0.2.4#egg=taskflow \
     && pip3 install git+https://github.com/CityOfPhiladelphia/eastern-state.git
 
 ENV AIRFLOW_HOME /usr/local/airflow
