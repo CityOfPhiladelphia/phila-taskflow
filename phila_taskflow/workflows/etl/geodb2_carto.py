@@ -183,7 +183,9 @@ etl_carto_geodb2_li_appeals = carto_geodb2_workflow_factory(
         'li_appeals',
         's3://"$S3_SCHEMA_BUCKET"/li_appeals.json',
         geometry_support='sde-char',
-        schedule='0 8 * * 2-6')
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
 
 etl_carto_geodb2_li_appeals_type = carto_geodb2_workflow_factory(
         'GIS_LNI',
