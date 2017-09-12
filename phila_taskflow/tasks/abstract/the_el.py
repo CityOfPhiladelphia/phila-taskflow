@@ -65,4 +65,7 @@ class TheEl(BashTask):
         if 'select_users' in self.params and self.params['select_users'] != None:
             bash_command += ' --select-users {}'.format(self.params['select_users'])
 
+        if 'if_not_exists' in self.params and self.params['if_not_exists'] == True:
+            bash_command += ' --if-not-exists'
+
         return bash_command

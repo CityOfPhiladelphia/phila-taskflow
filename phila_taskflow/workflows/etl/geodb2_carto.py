@@ -48,7 +48,7 @@ def carto_geodb2_workflow_factory(
     create_temp_carto_table = TheEl(
         workflow=workflow,
         name=workflow_name + '_create_temp_carto_table',
-        timeout=600,
+        timeout=1200,
         retries=2,
         params={
             'el_command': 'create_table',
@@ -56,6 +56,7 @@ def carto_geodb2_workflow_factory(
             'table_name': table_name + '_"$TASKFLOW_WORKFLOW_INSTANCE_ID"',
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
+            'if_not_exists': True,
             'connection_string': '"$CARTO_CONN_STRING"'
         })
 
