@@ -300,7 +300,7 @@ etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
         to_srid=4326,
         final_carto_table_name='taskflow_land_use')
 
-etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
+etl_carto_geodb2_condominium = carto_geodb2_workflow_factory(
         'GIS_DOR',
         'condominium',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_condominium.json',
