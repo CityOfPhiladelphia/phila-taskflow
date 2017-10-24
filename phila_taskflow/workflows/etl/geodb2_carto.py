@@ -131,7 +131,7 @@ etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
         'GIS_ODDT',
         'employee_salaries',
         's3://"$S3_SCHEMA_BUCKET"/employee_salaries.json',
-        schedule='30 6 * * *')
+        schedule=None) # manually triggered
 
 etl_carto_geodb2_streets_code_violation_notices = carto_geodb2_workflow_factory(
         'GIS_STREETS',
@@ -305,3 +305,9 @@ etl_carto_geodb2_condominium = carto_geodb2_workflow_factory(
         'condominium',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_condominium.json',
         schedule='0 15 * * 6')
+
+etl_carto_geodb2_vw_rtt_summary = carto_geodb2_workflow_factory(
+        'GIS_DOR',
+        'vw_rtt_summary',
+        's3://"$S3_SCHEMA_BUCKET"/gis_dor_vw_rtt_summary.json',
+        schedule=None) # manually triggered

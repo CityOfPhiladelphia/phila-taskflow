@@ -27,7 +27,8 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_li_unsafe,
     etl_carto_geodb2_li_violations,
     etl_carto_geodb2_stormwater_grants,
-    etl_carto_geodb2_land_use
+    etl_carto_geodb2_land_use,
+    etl_carto_geodb2_vw_rtt_summary
 )
 
 workflows = [
@@ -56,5 +57,6 @@ workflows = [
     etl_carto_geodb2_li_unsafe,
     etl_carto_geodb2_li_violations,
     etl_carto_geodb2_stormwater_grants,
-    etl_carto_geodb2_land_use
+    etl_carto_geodb2_land_use,
+    etl_carto_geodb2_vw_rtt_summary
 ]
