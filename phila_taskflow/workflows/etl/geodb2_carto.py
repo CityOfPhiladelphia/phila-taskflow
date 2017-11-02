@@ -14,7 +14,8 @@ def carto_geodb2_workflow_factory(
         to_srid=None,
         from_srid=None,
         select_users='publicuser,tileuser',
-        geodb2_connection_string='"$GEODB2_PUBLIC_CONN_STRING"'):
+        geodb2_connection_string='"$GEODB2_PUBLIC_CONN_STRING"',
+        indexes_fields=None):
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
@@ -57,7 +58,8 @@ def carto_geodb2_workflow_factory(
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
             'if_not_exists': True,
-            'connection_string': '"$CARTO_CONN_STRING"'
+            'connection_string': '"$CARTO_CONN_STRING"',
+            'indexes_fields': indexes_fields
         })
 
     load_to_temp_carto_table = TheEl(
