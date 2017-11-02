@@ -125,7 +125,8 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
         geometry_support='sde-char',
         schedule='15 6 * * *',
         select_users='tileuser,cartodb_user_5219a680-1104-4b8d-bf75-f02f304849e1',
-        geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
+        geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
+        indexes_fields=['service_name', 'agency_responsible'])
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
         'GIS_ODDT',
@@ -222,6 +223,12 @@ etl_carto_geodb2_li_com_act_licenses = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_com_act_licenses',
         's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_com_act_licenses.json',
+        schedule='0 8 * * 2-6')
+
+etl_carto_geodb2_li_demolitions = carto_geodb2_workflow_factory(
+        'GIS_LNI',
+        'li_demolitions',
+        's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_demolitions.json',
         schedule='0 8 * * 2-6')
 
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
