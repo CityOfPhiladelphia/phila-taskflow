@@ -231,7 +231,10 @@ etl_carto_geodb2_li_demolitions = carto_geodb2_workflow_factory(
         'GIS_LNI',
         'li_demolitions',
         's3://"$S3_SCHEMA_BUCKET"/gis_lni_li_demolitions.json',
-        schedule='0 8 * * 2-6')
+        geometry_support='sde-char',
+        schedule='0 8 * * 2-6',
+        from_srid=2272,
+        to_srid=4326)
 
 etl_carto_geodb2_li_court_appeals = carto_geodb2_workflow_factory(
         'GIS_LNI',
