@@ -15,7 +15,8 @@ def carto_geodb2_workflow_factory(
         from_srid=None,
         select_users='publicuser,tileuser',
         geodb2_connection_string='"$GEODB2_PUBLIC_CONN_STRING"',
-        indexes_fields=None):
+        indexes_fields_on_create=None,
+        indexes_fields_on_load=None):
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
@@ -59,7 +60,7 @@ def carto_geodb2_workflow_factory(
             'geometry_support': postgis_geometry_support,
             'if_not_exists': True,
             'connection_string': '"$CARTO_CONN_STRING"',
-            'indexes_fields': indexes_fields
+            'indexes_fields': indexes_fields_on_create
         })
 
     load_to_temp_carto_table = TheEl(
@@ -75,7 +76,8 @@ def carto_geodb2_workflow_factory(
             'table_schema_path': schema_file,
             'geometry_support': postgis_geometry_support,
             'connection_string': '"$CARTO_CONN_STRING"',
-            'el_input_file': data_file
+            'el_input_file': data_file,
+            'indexes_fields': indexes_fields_on_load
         })
 
     swap_carto_tables = TheEl(
@@ -128,7 +130,7 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
         schedule='15 6 * * *',
         select_users='tileuser,cartodb_user_5219a680-1104-4b8d-bf75-f02f304849e1',
         geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
-        indexes_fields=['service_name', 'agency_responsible'])
+        indexes_fields_on_load=['service_name', 'agency_responsible'])
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
         'GIS_ODDT',
