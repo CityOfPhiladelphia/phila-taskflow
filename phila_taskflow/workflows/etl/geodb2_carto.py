@@ -130,7 +130,7 @@ etl_carto_geodb2_salesforce_cases = carto_geodb2_workflow_factory(
         schedule='15 6 * * *',
         select_users='tileuser,cartodb_user_5219a680-1104-4b8d-bf75-f02f304849e1',
         geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"',
-        indexes_fields_on_load=['service_name', 'agency_responsible'])
+        indexes_fields_on_load=['service_name', 'agency_responsible', 'requested_datetime', 'status'])
 
 etl_carto_geodb2_employee_salaries = carto_geodb2_workflow_factory(
         'GIS_ODDT',
