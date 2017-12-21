@@ -7,58 +7,58 @@ schemas_base_path = 'https://raw.githubusercontent.com/CityOfPhiladelphia/myppr-
 
 ppr_knack_tables = [
     {
-        carto_table: 'ppr_activity_categories',
-        knack_object_id: 32,
-        schema: 'ppr_activity_categories.json'
+        'carto_table': 'ppr_activity_categories',
+        'knack_object_id': 32,
+        'schema': 'ppr_activity_categories.json'
     },
     {
-        carto_table: 'ppr_activity_types',
-        knack_object_id: 6,
-        schema: 'ppr_activity_types.json'
+        'carto_table': 'ppr_activity_types',
+        'knack_object_id': 6,
+        'schema': 'ppr_activity_types.json'
     },
     {
-        carto_table: 'ppr_amenities',
-        knack_object_id: 7,
-        schema: 'ppr_amenities.json'
+        'carto_table': 'ppr_amenities',
+        'knack_object_id': 7,
+        'schema': 'ppr_amenities.json'
     },
     {
-        carto_table: 'ppr_amenity_types',
-        knack_object_id: 4,
-        schema: 'ppr_amenity_types.json'
+        'carto_table': 'ppr_amenity_types',
+        'knack_object_id': 4,
+        'schema': 'ppr_amenity_types.json'
     },
     {
-        carto_table: 'ppr_days',
-        knack_object_id: 25,
-        schema: 'ppr_days.json'
+        'carto_table': 'ppr_days',
+        'knack_object_id': 25,
+        'schema': 'ppr_days.json'
     },
     {
-        carto_table: 'ppr_facilities',
-        knack_object_id: 2,
-        schema: 'ppr_facilities.json'
+        'carto_table': 'ppr_facilities',
+        'knack_object_id': 2,
+        'schema': 'ppr_facilities.json'
     },
     {
-        carto_table: 'ppr_location_types',
-        knack_object_id: 2,
-        schema: 'ppr_location_types.json'
+        'carto_table': 'ppr_location_types',
+        'knack_object_id': 2,
+        'schema': 'ppr_location_types.json'
     },
     {
-        carto_table: 'ppr_program_schedules',
-        knack_object_id: 22,
-        schema: 'ppr_program_schedules.json'
+        'carto_table': 'ppr_program_schedules',
+        'knack_object_id': 22,
+        'schema': 'ppr_program_schedules.json'
     },
     {
-        carto_table: 'ppr_facility_schedules',
-        knack_object_id: 31,
-        schema: 'ppr_facility_schedules.json'
+        'carto_table': 'ppr_facility_schedules',
+        'knack_object_id': 31,
+        'schema': 'ppr_facility_schedules.json'
     },
     {
-        carto_table: 'ppr_programs',
-        knack_object_id: 5,
-        schema: 'ppr_programs.json'
+        'carto_table': 'ppr_programs',
+        'knack_object_id': 5,
+        'schema': 'ppr_programs.json'
     }
 ]
 
-workflow = Workflow(
+ppr_knack_workflow = Workflow(
     name='ppr_finder',
     active=True)
 
@@ -68,17 +68,17 @@ for table in ppr_knack_tables:
     temp_table_name = table['carto_table'] + '_"$TASKFLOW_WORKFLOW_INSTANCE_ID"'
 
     extract_from_knack = ExtractKnackObject(
-        workflow=workflow,
+        workflow=ppr_knack_workflow,
         retries=2,
-        name='{}_extract_{}'.format(workflow.name, table['carto_table']),
+        name='{}_extract_{}'.format(ppr_knack_workflow.name, table['carto_table']),
         params={
             'knack_object_id': table['knack_object_id'],
             'output_file': data_file
         })
 
     create_temp_carto_table = TheEl(
-        workflow=workflow,
-        name='{}_{}_create_temp_table'.format(workflow.name, table['carto_table']),
+        workflow=ppr_knack_workflow,
+        name='{}_{}_create_temp_table'.format(ppr_knack_workflow.name, table['carto_table']),
         timeout=1200,
         retries=2,
         params={
@@ -91,8 +91,8 @@ for table in ppr_knack_tables:
         })
 
     load_to_temp_carto_table = TheEl(
-        workflow=workflow,
-        name='{}_{}_load_temp_table'.format(workflow.name, table['carto_table']),
+        workflow=ppr_knack_workflow,
+        name='{}_{}_load_temp_table'.format(ppr_knack_workflow.name, table['carto_table']),
         timeout=3600,
         retries=2,
         params={
@@ -106,8 +106,8 @@ for table in ppr_knack_tables:
         })
 
     swap_carto_tables = TheEl(
-        workflow=workflow,
-        name='{}_{}_swap_tables'.format(workflow.name, table['carto_table']),
+        workflow=ppr_knack_workflow,
+        name='{}_{}_swap_tables'.format(ppr_knack_workflow.name, table['carto_table']),
         timeout=600,
         retries=2,
         params={
