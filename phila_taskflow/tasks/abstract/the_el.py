@@ -63,7 +63,12 @@ class TheEl(BashTask):
             bash_command += ' --to-srid {}'.format(self.params['to_srid'])
 
         if 'select_users' in self.params and self.params['select_users'] != None:
-            bash_command += ' --select-users {}'.format(self.params['select_users'])
+            if isinstance(self.params['select_users'], list):
+                select_users += ','.join(self.params['select_users'])
+            else:
+                select_users += self.params['select_users']
+
+            bash_command += ' --select-users {}'.format(select_users)
 
         if 'if_not_exists' in self.params and self.params['if_not_exists'] == True:
             bash_command += ' --if-not-exists'
