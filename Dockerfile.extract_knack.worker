@@ -52,7 +52,7 @@ RUN set -ex \
 RUN set -ex \
     && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git@0.2.9#egg=taskflow \
     && pip3 install git+https://github.com/CityOfPhiladelphia/eastern-state.git \
-    && pip3 install git+https://github.com/CityOfPhiladelphia/extract-knack.git
+    && pip3 install git+https://github.com/CityOfPhiladelphia/extract-knack.git@0.0.2
 
 COPY scripts/entrypoint.sh /entrypoint.sh
 
