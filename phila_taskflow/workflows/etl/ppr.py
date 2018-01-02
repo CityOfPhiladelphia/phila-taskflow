@@ -38,7 +38,7 @@ ppr_knack_tables = [
     },
     {
         'carto_table': 'ppr_location_types',
-        'knack_object_id': 2,
+        'knack_object_id': 33,
         'schema': 'ppr_location_types.json'
     },
     {
