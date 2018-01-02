@@ -64,9 +64,9 @@ class TheEl(BashTask):
 
         if 'select_users' in self.params and self.params['select_users'] != None:
             if isinstance(self.params['select_users'], list):
-                select_users += ','.join(self.params['select_users'])
+                select_users = ','.join(self.params['select_users'])
             else:
-                select_users += self.params['select_users']
+                select_users = self.params['select_users']
 
             bash_command += ' --select-users {}'.format(select_users)
 
