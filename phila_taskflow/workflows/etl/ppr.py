@@ -60,7 +60,8 @@ ppr_knack_tables = [
 
 ppr_knack_workflow = Workflow(
     name='ppr_finder',
-    active=True)
+    active=True,
+    schedule='0 8 * * 2-6')
 
 for table in ppr_knack_tables:
     data_file = 's3://"$S3_STAGING_BUCKET"/ppr_finder/"$TASKFLOW_WORKFLOW_INSTANCE_ID"/{}.csv'.format(

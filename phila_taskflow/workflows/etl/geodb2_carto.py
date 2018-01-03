@@ -325,3 +325,13 @@ etl_carto_geodb2_vw_rtt_summary = carto_geodb2_workflow_factory(
         'vw_rtt_summary',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_vw_rtt_summary.json',
         schedule=None) # manually triggered
+
+etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
+        'GIS_PPR',
+        'ppr_website_locatorpoints',
+        's3://"$S3_SCHEMA_BUCKET"/gis_ppr_ppr_website_locatorpoints.json',
+        geometry_support='sde-char',
+        schedule='0 8 * * 1',
+        from_srid=2272,
+        to_srid=4326,
+        geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
