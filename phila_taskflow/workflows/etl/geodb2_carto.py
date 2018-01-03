@@ -326,7 +326,7 @@ etl_carto_geodb2_vw_rtt_summary = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_vw_rtt_summary.json',
         schedule=None) # manually triggered
 
-etl_carto_geodb2_land_use = carto_geodb2_workflow_factory(
+etl_carto_geodb2_ppr_website_locatorpoints = carto_geodb2_workflow_factory(
         'GIS_PPR',
         'ppr_website_locatorpoints',
         's3://"$S3_SCHEMA_BUCKET"/gis_ppr_ppr_website_locatorpoints.json',
