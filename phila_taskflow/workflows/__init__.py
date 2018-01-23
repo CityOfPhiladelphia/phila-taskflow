@@ -30,7 +30,10 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_stormwater_grants,
     etl_carto_geodb2_land_use,
     etl_carto_geodb2_vw_rtt_summary,
-    etl_carto_geodb2_ppr_website_locatorpoints
+    etl_carto_geodb2_ppr_website_locatorpoints,
+    etl_carto_geodb2_dor_parcel,
+    etl_carto_geodb2_pwd_parcels,
+    etl_carto_geodb2_rtt_summary
 )
 from .etl.ppr import ppr_knack_workflow
 
@@ -64,5 +67,8 @@ workflows = [
     etl_carto_geodb2_land_use,
     etl_carto_geodb2_vw_rtt_summary,
     etl_carto_geodb2_ppr_website_locatorpoints,
-    ppr_knack_workflow
+    ppr_knack_workflow,
+    etl_carto_geodb2_dor_parcel,
+    etl_carto_geodb2_pwd_parcels,
+    etl_carto_geodb2_rtt_summary
 ]

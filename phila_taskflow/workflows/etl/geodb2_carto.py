@@ -335,3 +335,29 @@ etl_carto_geodb2_ppr_website_locatorpoints = carto_geodb2_workflow_factory(
         from_srid=2272,
         to_srid=4326,
         geodb2_connection_string='"$GEODB2_ODDT_CONN_STRING"')
+
+etl_carto_geodb2_dor_parcel = carto_geodb2_workflow_factory(
+        'GIS_DOR',
+        'dor_parcel',
+        's3://"$S3_SCHEMA_BUCKET"/gis_dor_dor_parcel.json',
+        geometry_support='sde',
+        schedule='0 10 * * 0',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_pwd_parcels = carto_geodb2_workflow_factory(
+        'GIS_WATER',
+        'pwd_parcels',
+        's3://"$S3_SCHEMA_BUCKET"/gis_water_pwd_parcels.json',
+        geometry_support='sde',
+        schedule='0 10 * * 0',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_rtt_summary = carto_geodb2_workflow_factory(
+        'GIS_DOR',
+        'rtt_summary',
+        's3://"$S3_SCHEMA_BUCKET"/gis_dor_rtt_summary.json',
+        geometry_support='sde-char',
+        from_srid=2272,
+        to_srid=4326)
