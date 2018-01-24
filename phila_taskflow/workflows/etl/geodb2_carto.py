@@ -16,7 +16,9 @@ def carto_geodb2_workflow_factory(
         select_users='publicuser,tileuser',
         geodb2_connection_string='"$GEODB2_PUBLIC_CONN_STRING"',
         indexes_fields_on_create=None,
-        indexes_fields_on_load=None):
+        indexes_fields_on_load=None,
+        extract_timeout=3600,
+        load_timeout=3600):
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
@@ -30,7 +32,7 @@ def carto_geodb2_workflow_factory(
     extract_from_geodb2 = TheEl(
         workflow=workflow,
         name=workflow_name + '_extract_from_geodb2',
-        timeout=3600,
+        timeout=extract_timeout,
         retries=2,
         params={
             'el_command': 'read',
@@ -66,7 +68,7 @@ def carto_geodb2_workflow_factory(
     load_to_temp_carto_table = TheEl(
         workflow=workflow,
         name=workflow_name + '_load_to_temp_carto_table',
-        timeout=3600,
+        timeout=load_timeout,
         retries=2,
         params={
             'el_command': 'write',
@@ -342,6 +344,8 @@ etl_carto_geodb2_dor_parcel = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_dor_parcel.json',
         geometry_support='sde',
         schedule='0 10 * * 0',
+        extract_timeout=43200, # 12 hours
+        load_timeout=43200, # 12 hours
         from_srid=2272,
         to_srid=4326)
 
@@ -351,6 +355,8 @@ etl_carto_geodb2_pwd_parcels = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/gis_water_pwd_parcels.json',
         geometry_support='sde',
         schedule='0 10 * * 0',
+        extract_timeout=43200, # 12 hours
+        load_timeout=43200, # 12 hours
         from_srid=2272,
         to_srid=4326)
 
@@ -359,5 +365,7 @@ etl_carto_geodb2_rtt_summary = carto_geodb2_workflow_factory(
         'rtt_summary',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_rtt_summary.json',
         geometry_support='sde-char',
+        extract_timeout=10800, # 3 hours
+        load_timeout=10800, # 3 hours
         from_srid=2272,
         to_srid=4326)
