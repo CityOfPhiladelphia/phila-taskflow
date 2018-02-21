@@ -33,7 +33,8 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_ppr_website_locatorpoints,
     etl_carto_geodb2_dor_parcel,
     etl_carto_geodb2_pwd_parcels,
-    etl_carto_geodb2_rtt_summary
+    etl_carto_geodb2_rtt_summary,
+    etl_carto_geodb2_gis_water_inlets
 )
 from .etl.ppr import ppr_knack_workflow
 
@@ -70,5 +71,6 @@ workflows = [
     ppr_knack_workflow,
     etl_carto_geodb2_dor_parcel,
     etl_carto_geodb2_pwd_parcels,
-    etl_carto_geodb2_rtt_summary
+    etl_carto_geodb2_rtt_summary,
+    etl_carto_geodb2_gis_water_inlets
 ]

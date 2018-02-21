@@ -369,3 +369,12 @@ etl_carto_geodb2_rtt_summary = carto_geodb2_workflow_factory(
         load_timeout=10800, # 3 hours
         from_srid=2272,
         to_srid=4326)
+
+etl_carto_geodb2_gis_water_inlets = carto_geodb2_workflow_factory(
+        'GIS_WATER',
+        'inlets',
+        's3://"$S3_SCHEMA_BUCKET"/gis_water_inlets.json',
+        geometry_support='sde-char',
+        schedule='0 12 * * 0',
+        from_srid=2272,
+        to_srid=4326)
