@@ -391,7 +391,7 @@ etl_carto_geodb2_gis_planning_zoning_overlays = carto_geodb2_workflow_factory(
 etl_carto_geodb2_gis_planning_zoning_basedistricts = carto_geodb2_workflow_factory(
         'GIS_PLANNING',
         'zoning_basedistricts',
-        's3://"$S3_SCHEMA_BUCKET"/gis_planning_zoning_overlays.json',
+        's3://"$S3_SCHEMA_BUCKET"/gis_planning_zoning_basedistricts.json',
         geometry_support='sde',
         schedule='0 5 * * *',
         from_srid=2272,
