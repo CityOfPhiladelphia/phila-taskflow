@@ -378,3 +378,21 @@ etl_carto_geodb2_gis_water_inlets = carto_geodb2_workflow_factory(
         schedule='0 12 * * 0',
         from_srid=2272,
         to_srid=4326)
+
+etl_carto_geodb2_gis_planning_zoning_overlays = carto_geodb2_workflow_factory(
+        'GIS_PLANNING',
+        'zoning_overlays',
+        's3://"$S3_SCHEMA_BUCKET"/gis_planning_zoning_overlays.json',
+        geometry_support='sde',
+        schedule='0 5 * * *',
+        from_srid=2272,
+        to_srid=4326)
+
+etl_carto_geodb2_gis_planning_zoning_basedistricts = carto_geodb2_workflow_factory(
+        'GIS_PLANNING',
+        'zoning_basedistricts',
+        's3://"$S3_SCHEMA_BUCKET"/gis_planning_zoning_overlays.json',
+        geometry_support='sde',
+        schedule='0 5 * * *',
+        from_srid=2272,
+        to_srid=4326)
