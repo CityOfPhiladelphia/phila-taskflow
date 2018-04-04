@@ -13,13 +13,14 @@ SERVICES = [
         'dockerfile': 'Dockerfile.api_server',
         'aws_repo_name': 'taskflow-api-server',
         'name': 'oddt-data-engineering-taskflow-api-server',
+        'cluster': 'oddt-data-engineering-ecs-cluster',
         'service_task': {
             'name': 'oddt-data-engineering-taskflow-api-server',
             'task_def_name': 'oddt-data-engineering-taskflow-api-server',
             'task_def': {
                 'family': 'oddt-data-engineering-taskflow-api-server',
-                'task_role_arn': 'arn:aws:iam::676612114792:role/oddt-data-engineering-taskflow-role',
-                'container_definitions': [
+                'taskRoleArn': 'arn:aws:iam::676612114792:role/oddt-data-engineering-taskflow-role',
+                'containerDefinitions': [
                     {
                         'cpu': 256,
                         'image': 'SCRIPT SHOULD UPDATE THIS!!!',
@@ -73,13 +74,14 @@ SERVICES = [
         'dockerfile': 'Dockerfile.scheduler',
         'aws_repo_name': 'taskflow-scheduler',
         'name': 'oddt-data-engineering-taskflow-scheduler',
+        'cluster': 'oddt-data-engineering-ecs-cluster',
         'service_task': {
             'name': 'oddt-data-engineering-taskflow-scheduler',
             'task_def_name': 'oddt-data-engineering-taskflow-scheduler',
             'task_def': {
                 'family': 'oddt-data-engineering-taskflow-scheduler',
-                'task_role_arn': 'arn:aws:iam::676612114792:role/oddt-data-engineering-taskflow-role',
-                'container_definitions': [
+                'taskRoleArn': 'arn:aws:iam::676612114792:role/oddt-data-engineering-taskflow-role',
+                'containerDefinitions': [
                     {
                         "cpu": 512,
                         "image": 'SCRIPT SHOULD UPDATE THIS!!!',
@@ -134,8 +136,9 @@ def get_image_tag(service, hexsha):
     return get_image_repo(service) + ':' + hexsha
 
 @main.command('deploy-taskflow')
-@click.option('--no-repo-check', is_flag=True, default=False)
-def deploy_taskflow(no_repo_check):
+@click.option('--no-repo-check', is_flag=True, default=False, help='Overrides checking for uncommitted changes')
+@click.option('--no-deploy', is_flag=True, default=False, help='Skips deploying to production, just build and push images')
+def deploy_taskflow(no_repo_check, no_deploy):
     repo = Repo()
 
     if not no_repo_check and repo.is_dirty():
@@ -158,6 +161,7 @@ def deploy_taskflow(no_repo_check):
     auth_config_payload = {'username': userpass[0], 'password': userpass[1]}
 
     for service in SERVICES:
+        click.echo('{} - Building Image'.format(service['name']))
         image, build_log = client.images.build(path='.',
                                                dockerfile=service['dockerfile'],
                                                tag=get_image_tag(service, hexsha),
@@ -166,6 +170,8 @@ def deploy_taskflow(no_repo_check):
             if 'stream' in line:
                 sys.stdout.write(line['stream'])
 
+
+        click.echo('{} - Pushing Image'.format(service['name']))
         push_log = client.images.push(get_image_repo(service),
                                       tag=hexsha,
                                       auth_config=auth_config_payload,
@@ -176,19 +182,27 @@ def deploy_taskflow(no_repo_check):
                        line.get('progress', '') + '\t' +
                        line.get('id', ''))
 
-    ecs_client = boto3.client('ecs')
+    if not no_deploy:
+        ecs_client = boto3.client('ecs')
+        for service in SERVICES:
+            service_task = service['service_task']
+            service_task['task_def']['containerDefinitions'][0]['image'] = get_image_tag(service, hexsha)
 
-    for service in SERVICES:
-        service_task = service['service_task']
-        service_task['task_def']['container_definitions'][0]['image'] = get_image_tag(service, hexsha)
+            click.echo('{} - Registering new ECS task'.format(service['name']))
+            response = ecs_client.register_task_definition(**service_task['task_def'])
+            new_task_def_arn = response['taskDefinition']['taskDefinitionArn']
 
-        response = ecs_client.register_task_definition(**service_task)
+            click.echo('{} - Updating service'.format(service['name']))
+            ecs_client.update_service(cluster=service['cluster'],
+                                      service=service['name'],
+                                      taskDefinition=new_task_def_arn)
 
-        ecs_client.update_service(service=service['name'],
-                                  taskDefinition=response['taskDefinition']['taskDefinitionArn'])
-
-        ## TODO: deregister old task def
-
+            response = ecs_client.list_task_definitions(familyPrefix=service_task['task_def']['family'],
+                                                        status='ACTIVE')
+            for task_def_arn in response['taskDefinitionArns']:
+                if task_def_arn != new_task_def_arn:
+                    click.echo('{} - Deregistering old task - {}'.format(service['name'], task_def_arn))
+                    ecs_client.deregister_task_definition(taskDefinition=task_def_arn)
 
 @main.command()
 @click.argument('image')
