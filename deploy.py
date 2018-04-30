@@ -232,6 +232,9 @@ def deploy_task_image(task_name, docker_file, build_path, no_repo_check, no_depl
         click.echo('Repo is dirty, commit changes')
         sys.exit(1)
 
+    if task_name[:9] == 'taskflow-':
+        task_name = task_name[9:]
+
     hexsha = repo.head.commit.hexsha
     click.echo('Deploying from commit: {}'.format(hexsha))
 
