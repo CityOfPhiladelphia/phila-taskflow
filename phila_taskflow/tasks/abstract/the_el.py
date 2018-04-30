@@ -73,4 +73,10 @@ class TheEl(BashTask):
         if 'if_not_exists' in self.params and self.params['if_not_exists'] == True:
             bash_command += ' --if-not-exists'
 
+        if 'upsert' in self.params and self.params['upsert'] == True:
+            bash_command += ' --upsert'
+
+        if 'truncate' in self.params and self.params['truncate'] == True:
+            bash_command += ' --truncate'
+
         return bash_command

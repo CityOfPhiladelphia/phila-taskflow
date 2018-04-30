@@ -79,7 +79,8 @@ def carto_geodb2_workflow_factory(
             'geometry_support': postgis_geometry_support,
             'connection_string': '"$CARTO_CONN_STRING"',
             'el_input_file': data_file,
-            'indexes_fields': indexes_fields_on_load
+            'indexes_fields': indexes_fields_on_load,
+            'truncate': True
         })
 
     swap_carto_tables = TheEl(

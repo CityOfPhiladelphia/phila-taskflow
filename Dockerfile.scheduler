@@ -52,8 +52,6 @@ RUN set -ex \
     && pip3 install --process-dependency-links git+https://github.com/CityOfPhiladelphia/taskflow.git@0.2.5#egg=taskflow \
     && pip3 install git+https://github.com/CityOfPhiladelphia/eastern-state.git
 
-ENV AIRFLOW_HOME /usr/local/airflow
-
 COPY scripts/entrypoint.sh /entrypoint.sh
 #COPY requirements.txt /requirements.txt
 
