@@ -17,8 +17,8 @@ def carto_geodb2_workflow_factory(
         geodb2_connection_string='"$GEODB2_PUBLIC_CONN_STRING"',
         indexes_fields_on_create=None,
         indexes_fields_on_load=None,
-        extract_timeout=3600,
-        load_timeout=3600):
+        extract_timeout=7200,
+        load_timeout=7200):
 
     workflow_name = 'etl_carto_geodb2_{}'.format(table_name)
 
