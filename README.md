@@ -10,7 +10,27 @@ Read the [Taskflow](https://github.com/CityOfPhiladelphia/taskflow) to learn how
 
 Once you have a workflow or task, look at some of the existing Dockerfiles, Dockerfile.s3_sftp_sync.worker being the simplist and Dockerfile.the_el.worker being a more complex example.
 
-### Deploying a task container
+### Deploy Taskflow Service
+
+Deploys the Taskflow API and Scheduler. This should be performed everytime workflow defination code is changed (schedule, dependency, etc).
+
+```sh
+python deploy.py deploy-taskflow
+```
+
+### Deploy Taskflow task
+
+Deploy a unique task container, such as the container that powers TheEL abstract task in this repo.
+
+```sh
+python deploy.py deploy-task-image the-el Dockerfile.the_el.worker
+```
+
+If you are deploying a transformation from another repo, make sure to keep the virtualenv enironment used for phila-taskflow active and change to the transformation scripts repo, then run `python deploy.py deploy-task-image ...`.
+
+### Manually Deploy a task container
+
+*** Outdated! - Kept in case pieces are useful ***
 
 You will need to [create a repository in AWS](http://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-create.html) for the docker image. You only need to this each time your create a new image (new Dockerfile). The follow instructions can be used for each deploy after setting up a container repository.
 
