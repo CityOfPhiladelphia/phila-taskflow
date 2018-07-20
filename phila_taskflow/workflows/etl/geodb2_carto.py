@@ -403,6 +403,7 @@ etl_carto_geodb2_tax_delinquency = carto_geodb2_workflow_factory(
         'tax_delinquency',
         's3://"$S3_SCHEMA_BUCKET"/gis_opa_tax_delinquency.json',
         schedule=None, # manually trigger
+        final_carto_table_name='real_estate_tax_delinquencies',
         geometry_support='sde-char',
         from_srid=2272,
         to_srid=4326)
