@@ -399,11 +399,10 @@ etl_carto_geodb2_gis_planning_zoning_basedistricts = carto_geodb2_workflow_facto
         to_srid=4326)
 
 etl_carto_geodb2_tax_delinquency = carto_geodb2_workflow_factory(
-        'GIS_OPA',
-        'tax_delinquency',
-        's3://"$S3_SCHEMA_BUCKET"/gis_opa_tax_delinquency.json',
+        'GIS_REVENUE',
+        'real_estate_tax_delinquencies',
+        's3://"$S3_SCHEMA_BUCKET"/gis_revenue_real_estate_tax_delinquencies.json',
         schedule=None, # manually trigger
-        final_carto_table_name='real_estate_tax_delinquencies',
         geometry_support='sde-char',
         from_srid=2272,
         to_srid=4326)
