@@ -363,9 +363,10 @@ etl_carto_geodb2_pwd_parcels = carto_geodb2_workflow_factory(
 
 etl_carto_geodb2_rtt_summary = carto_geodb2_workflow_factory(
         'GIS_DOR',
-        'rtt_summary',
+        'rtt_summary_full',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_rtt_summary.json',
         geometry_support='sde-char',
+        schedule=None, # manually trigger
         extract_timeout=10800, # 3 hours
         load_timeout=10800, # 3 hours
         from_srid=2272,
