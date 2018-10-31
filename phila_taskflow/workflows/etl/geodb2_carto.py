@@ -412,10 +412,10 @@ etl_carto_geodb2_splits = carto_geodb2_workflow_factory(
         'GIS_ELECTIONS',
         'splits',
         's3://"$S3_SCHEMA_BUCKET"/gis_elections_splits.json',
-        schedule=None) # manually trigger
+        schedule='0 7 1 * *')
 
 etl_carto_geodb2_elected_officials = carto_geodb2_workflow_factory(
         'GIS_ELECTIONS',
         'elected_officials',
         's3://"$S3_SCHEMA_BUCKET"/gis_elections_elected_officials.json',
-        schedule=None) # manually trigger
+        schedule='0 7 1 * *')
