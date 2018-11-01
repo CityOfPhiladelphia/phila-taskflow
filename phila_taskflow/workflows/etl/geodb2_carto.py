@@ -419,3 +419,9 @@ etl_carto_geodb2_gis_elections_elected_officials = carto_geodb2_workflow_factory
         'elected_officials',
         's3://"$S3_SCHEMA_BUCKET"/gis_elections_elected_officials.json',
         schedule=None)  # manually trigger
+
+etl_carto_geodb2_gis_elections_polling_places = carto_geodb2_workflow_factory(
+        'GIS_ELECTIONS',
+        'polling_places',
+        's3://"$S3_SCHEMA_BUCKET"/gis_elections_polling_places.json',
+        schedule=None)  # manually trigger

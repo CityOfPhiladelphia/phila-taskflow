@@ -39,7 +39,8 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_gis_planning_zoning_basedistricts,
     etl_carto_geodb2_tax_delinquency,
     etl_carto_geodb2_gis_elections_elected_officials,
-    etl_carto_geodb2_gis_elections_splits
+    etl_carto_geodb2_gis_elections_splits,
+    etl_carto_geodb2_gis_elections_polling_places
 )
 from .etl.ppr import ppr_knack_workflow
 
@@ -82,5 +83,6 @@ workflows = [
     etl_carto_geodb2_gis_planning_zoning_basedistricts,
     etl_carto_geodb2_tax_delinquency,
     etl_carto_geodb2_gis_elections_elected_officials,
-    etl_carto_geodb2_gis_elections_splits
+    etl_carto_geodb2_gis_elections_splits,
+    etl_carto_geodb2_gis_elections_polling_places
 ]
