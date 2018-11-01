@@ -424,4 +424,8 @@ etl_carto_geodb2_gis_elections_polling_places = carto_geodb2_workflow_factory(
         'GIS_ELECTIONS',
         'polling_places',
         's3://"$S3_SCHEMA_BUCKET"/gis_elections_polling_places.json',
-        schedule=None)  # manually trigger
+        schedule=None,  # manually trigger
+        geometry_support='sde-char',
+        from_srid=2272,
+        to_srid=4326
+        )
