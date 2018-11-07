@@ -323,12 +323,6 @@ etl_carto_geodb2_condominium = carto_geodb2_workflow_factory(
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_condominium.json',
         schedule='0 15 * * 6')
 
-etl_carto_geodb2_vw_rtt_summary = carto_geodb2_workflow_factory(
-        'GIS_DOR',
-        'vw_rtt_summary',
-        's3://"$S3_SCHEMA_BUCKET"/gis_dor_vw_rtt_summary.json',
-        schedule=None) # manually triggered
-
 etl_carto_geodb2_ppr_website_locatorpoints = carto_geodb2_workflow_factory(
         'GIS_PPR',
         'ppr_website_locatorpoints',
@@ -363,7 +357,7 @@ etl_carto_geodb2_pwd_parcels = carto_geodb2_workflow_factory(
 
 etl_carto_geodb2_rtt_summary = carto_geodb2_workflow_factory(
         'GIS_DOR',
-        'rtt_summary_full',
+        'rtt_summary',
         's3://"$S3_SCHEMA_BUCKET"/gis_dor_rtt_summary.json',
         geometry_support='sde-char',
         schedule=None, # manually trigger
