@@ -42,6 +42,7 @@ from .etl.geodb2_carto import (
     etl_carto_geodb2_gis_elections_polling_places
 )
 from .etl.ppr import ppr_knack_workflow
+from .etl.workforce_diversity import workforce_diversity
 
 workflows = [
     etl_carto_geodb2_assessments,
@@ -82,5 +83,6 @@ workflows = [
     etl_carto_geodb2_tax_delinquency,
     etl_carto_geodb2_gis_elections_elected_officials,
     etl_carto_geodb2_gis_elections_splits,
-    etl_carto_geodb2_gis_elections_polling_places
+    etl_carto_geodb2_gis_elections_polling_places,
+    workforce_diversity
 ]
