@@ -5,7 +5,7 @@ from taskflow.tasks.bash_task import BashTask
 from phila_taskflow.tasks.abstract.the_el import TheEl
 
 redash_connection_string = '"$REDASH_CONN_STRING"'
-cli_job_definition = getenv('WORKFORCE_DIVERSITY_CLI_JOB_DEFINITION')
+cli_job_definition = getenv('WORKFORCE_DIVERSITY_JOB_DEFINITION')
 
 source_file_dir = 's3://"$S3_SFTP_SYNC__S3_BUCKET"/sftp/OHR_Workforce_Diversity/'
 source_files = {
