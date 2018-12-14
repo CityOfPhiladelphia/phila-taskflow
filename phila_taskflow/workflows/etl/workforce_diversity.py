@@ -31,7 +31,8 @@ schema_files = {
 workforce_diversity = Workflow(
     name='workforce_diversity',
     active=True,
-    schedule='0 8 * * 1' # mondays at 8am
+    schedule=None # manually trigger
+    # schedule='0 8 * * 1' # mondays at 8am
 )
 
 process_hires = BashTask(
