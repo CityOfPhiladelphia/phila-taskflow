@@ -423,3 +423,13 @@ etl_carto_geodb2_gis_elections_polling_places = carto_geodb2_workflow_factory(
         from_srid=2272,
         to_srid=4326
         )
+
+etl_carto_geodb2_gis_streets_legal_cards = carto_geodb2_workflow_factory(
+        'GIS_STREETS',
+        'legal_cards',
+        's3://"$S3_SCHEMA_BUCKET"/gis_streets_legal_cards.json',
+        schedule='0 5 * * *',  # manually trigger
+        geometry_support='sde-char',
+        from_srid=2272,
+        to_srid=4326
+        )
