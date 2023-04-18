@@ -7,7 +7,7 @@ docker==3.4.1
 docker-pycreds==0.3.0
 docutils==0.14
 gitdb2==2.0.4
-GitPython==2.1.11
+GitPython==3.1.30
 idna==2.7
 jmespath==0.9.3
 python-dateutil==2.7.3
